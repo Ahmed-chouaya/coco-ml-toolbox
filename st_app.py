@@ -1,5 +1,19 @@
 import streamlit as st
 
+# --------------------------------------------------------
+# Override headers to allow embedding in iframe
+# --------------------------------------------------------
+def override_headers():
+    Server.get_current()._headers = {
+        "X-Frame-Options": "ALLOW-FROM https://data-up.io",
+        "Content-Security-Policy": "frame-ancestors 'self' https://data-up.io;",
+    }
+
+override_headers()  
+# --------------------------------------------------------
+
+
+
 # from src.main_ui import MainUI
 
 
