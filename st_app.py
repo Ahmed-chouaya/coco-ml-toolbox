@@ -1,7 +1,22 @@
 import streamlit as st
-from streamlit.web.server import Server
+from starlette.middleware import Middleware
+from starlette.middleware.base import BaseHTTPMiddleware
 
-# Your existing page setup
+# --------------------------------------------------------
+# Middleware to override headers
+# --------------------------------------------------------
+class CustomHeaderMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        response = await call_next(request)
+        response.headers["X-Frame-Options"] = "ALLOW-FROM https://data-up.io/"
+        response.headers["Content-Security-Policy"] = "frame-ancestors 'self' https://data-up.io/;"
+        return response
+
+# Add middleware to Streamlit's FastAPI app
+st.runtime.add_middleware(CustomHeaderMiddleware)
+# --------------------------------------------------------
+
+# Your existing Streamlit code
 home_page = st.Page("st_pages/home.py", title="Home", icon="🏠")
 tools_page = st.Page("st_pages/tools.py", title="Tools", icon="🪛")
 analysis_page = st.Page("st_pages/stats.py", title="Stats", icon="📊")
@@ -12,17 +27,4 @@ st.set_page_config(
     page_icon=":rocket",
 )
 
-# Override headers AFTER initializing the app
-def override_headers():
-    server = Server.get_current()
-    if server is not None:
-        server._headers = {
-            "X-Frame-Options": "ALLOW-FROM https://data-up.io",
-            "Content-Security-Policy": "frame-ancestors 'self' https://data-up.io;",
-        }
-
-# Call the function after setup
-override_headers()
-
-# Run the app
 pg.run()
