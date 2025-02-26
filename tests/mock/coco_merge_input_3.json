@@ -1,0 +1,87 @@
+{
+    "info": {
+        "description": "Sample COCO file 3",
+        "year": 2024
+    },
+    "licenses": [
+        {
+            "id": 1,
+            "name": "",
+            "url": ""
+        }
+    ],
+    "images": [
+        {
+            "id": 1,
+            "file_name": "image5.jpg",
+            "height": 1024,
+            "width": 768,
+            "license": 1,
+            "flickr_url": "http://example.com/image5.jpg",
+            "coco_url": "http://example.com/image5.jpg",
+            "date_captured": "2024-07-02 12:00:00"
+        },
+        {
+            "id": 2,
+            "file_name": "image3.jpg",
+            "height": 1024,
+            "width": 768,
+            "license": 1,
+            "flickr_url": "http://example.com/image3.jpg",
+            "coco_url": "http://example.com/image3.jpg",
+            "date_captured": "2024-07-02 12:00:00"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 2,
+            "category_id": 1,
+            "bbox": [
+                100,
+                200,
+                60,
+                90
+            ],
+            "area": 5400,
+            "segmentation": [],
+            "iscrowd": 0
+        },
+        {
+            "id": 2,
+            "image_id": 1,
+            "category_id": 2,
+            "bbox": [
+                150,
+                250,
+                75,
+                110
+            ],
+            "area": 8250,
+            "segmentation": [],
+            "iscrowd": 0
+        }
+    ],
+    "categories": [
+        {
+            "id": 1,
+            "name": "bicycle",
+            "supercategory": "vehicle"
+        },
+        {
+            "id": 2,
+            "name": "bus",
+            "supercategory": "vehicle"
+        },
+        {
+            "id": 3,
+            "name": "boat",
+            "supercategory": "vehicle"
+        },
+        {
+            "id": 4,
+            "name": "stop sign",
+            "supercategory": "outdoor"
+        }
+    ]
+}
